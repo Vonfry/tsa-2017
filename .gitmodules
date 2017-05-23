@@ -1,0 +1,3 @@
+[submodule "tsa-contest-baseline"]
+	path = tsa-contest-baseline
+	url = https://github.com/TSA-Contest/tsa-contest-baseline.git
