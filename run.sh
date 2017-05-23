@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python2 baseline.ipynb > output.log
+python2 baseline.py > output.log

@@ -69,7 +69,8 @@ train.groupby(['clickTime_day'])['label'].value_counts()
 
 # 将第28天作为验证集  （集第一次更新）
 # proof = train[train.clickTime_day==28]
-train = train[(train.clickTime_day>=17 ) & (train.clickTime_day<= 28)]
+#train = train[(train.clickTime_day>=17 ) & (train.clickTime_day<= 28)]
+train = train[(train.clickTime_day == 28)]
 
 
 # In[69]:
