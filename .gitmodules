@@ -1,3 +1,6 @@
 [submodule "tsa-contest-baseline"]
 	path = tsa-contest-baseline
 	url = https://github.com/TSA-Contest/tsa-contest-baseline.git
+[submodule "xgboost"]
+	path = xgboost
+	url = https://github.com/dmlc/xgboost
