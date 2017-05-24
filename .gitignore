@@ -108,3 +108,6 @@ ENV/
 pre
 pre/
 *.pkl
+output.*
+output.*
+*.html
