@@ -10,16 +10,10 @@ import numpy as np
 import pickle
 import math
 
-def featureManipulation(dtfm):
-    '''依次处理某一dataframe内__所有__列的__所有__零值'''
-    for col, _ in dtfm.iteritems():
-        dtfm_col = dtfm[dtfm[col] > 0]
-        # 注！！size方法返回的数量里，包含NaN的统计，而count不包含NaN，所以如果使用size，会导致后面的样本数，大于总体数
-        # 而对于重写的__len__方法，其值与count()方法相同，但count返回的是一列值，而len是一个值
-        pr_col = dtfm_col[col].value_counts()/len(dtfm_col[col])
-        pr_col *= len(dtfm[col][(dtfm[col] == 0)])
-        pr_col = pr_col.apply(np.round)
-        pr_col = pr_col.to_frame()
+def featureManipulation(dtfm, colList, func):
+    '''依次处理某一dataframe内__所有__col的__所有__零值'''
+    for col in colList:
+        pr_col = func(dtfm, col)
         for row in pr_col.iterrows():
             zeroSample = dtfm[col][(dtfm[col] == 0)]
             replace = row[0]
@@ -35,6 +29,14 @@ def featureManipulation(dtfm):
     print(dtfm)
 
 
+# 这里是对user的例子
 user = pd.read_csv('./pre/user.csv')
 user.head()
-featureManipulation(user)
+def sln(dtfm, col):
+    dtfm_col = dtfm[dtfm[col] > 0]
+    pr_col = dtfm_col[col].value_counts()/len(dtfm_col[col])
+    pr_col *= len(dtfm[col][(dtfm[col] == 0)])
+    pr_col = pr_col.apply(np.round)
+    pr_col = pr_col.to_frame()
+    return pr_col
+featureManipulation(user, ['education'], sln)
