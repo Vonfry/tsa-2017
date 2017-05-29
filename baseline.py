@@ -12,7 +12,7 @@ import math
 
 def featureManipulation(dtfm):
     '''依次处理某一dataframe内__所有__列的__所有__零值'''
-    for col, _ in user.iteritems():
+    for col, _ in dtfm.iteritems():
         dtfm_col = dtfm[dtfm[col] > 0]
         # 注！！size方法返回的数量里，包含NaN的统计，而count不包含NaN，所以如果使用size，会导致后面的样本数，大于总体数
         # 而对于重写的__len__方法，其值与count()方法相同，但count返回的是一列值，而len是一个值
